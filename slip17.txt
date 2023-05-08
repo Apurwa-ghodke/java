@@ -1,0 +1,93 @@
+
+Slip 17
+
+1.Write a java program to accept ‘N’ integers from a user. Store and display integers in sorted order having proper collection class. The collection should not accept duplicate elements.
+
+import java.util.*;
+import java.io.*;
+
+class Slip19_2
+{
+            public static void main(String[] args) throws Exception
+            {
+                        int no,element,i;
+                                    BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+                                    TreeSet ts=new TreeSet();
+                                    System.out.println("Enter the of elements :");
+                                    no=Integer.parseInt(br.readLine());
+                                    for(i=0;i<no;i++)
+                                    {
+                                                System.out.println("Enter the element : ");
+                                                            element=Integer.parseInt(br.readLine());
+                                                            ts.add(element);
+                                    }
+                       
+                                    System.out.println("The elements in sorted order :"+ts);       
+                        System.out.println("Enter element to be serach : ");
+                        element = Integer.parseInt(br.readLine());
+                        if(ts.contains(element))
+                                    System.out.println("Element is found");
+                        else
+                                    System.out.println("Element is NOT found");
+            }
+}
+
+
+2.Write a java program using Multithreading to display the number’s between 1 to 100 continuously in a JTextField by clicking on JButton. (Use Runnable Interface & Swing).
+
+import java.awt.event.*;
+import javax.swing.*;
+
+class Message implements Runnable
+{
+            JTextField t;
+            public void run()
+            {
+                        for(int i =1; i<=100;i++)
+                        {
+                                    t.setText(""+i);
+                                    try
+                                    {
+                                                Thread.sleep(50);
+                                    }
+                                    catch(Exception  e)
+                                    {
+                                                e.printStackTrace();
+                                    }
+                        }
+            }
+}
+class Slip12_1 implements ActionListener
+{
+            JFrame f;
+            JPanel p;
+            JTextField t;
+            JButton b;
+            Thread t1;
+
+            Slip12_1()
+            {
+                        f = new JFrame();
+                        p = new JPanel();
+
+                        t = new JTextField(60);
+                        b = new JButton("Start");
+
+                        t1 = new Thread(this);
+
+                        b.addActionListener(this);
+
+                        p.add(t);
+                        p.add(b);
+
+                        f.add(p);
+                        f.setSize(400, 400);
+                        f.setVisible(true);
+            }
+
+
+            public void actionPerformed(ActionEvent e)
+            {
+                        t1.start();
+            }   
+}
